@@ -1,7 +1,32 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
 
-app.use('/api/stuff', (req, res, next) => {
+mongoose.connect('mongodb+srv://dama:<password>@cluster-dama.qgpqn.mongodb.net/?retryWrites=true&w=majority', 
+)
+
+
+//pour les headers éviter CORS
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET', 'POST', 'PUT', 'OPTIONS', 'PATCH', 'DELETE');
+  next();
+});
+
+//pour la route post, afin qu'express prend toutes les requêtes qui ont comme 
+//content-type: application/json
+app.use(express.json());
+
+app.post('/api/stuff', (req, res, next) => {
+  console.log(req.body);
+  res.status(201).json({
+    message: 'objer créé'
+  });
+})
+
+//middleware get
+app.get('/api/stuff', (req, res, next) => {
 	const stuff = [
     {
       _id: 'oeihfzeoi',
