@@ -1,9 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const Thing = require('./modeles/Thing');
 
-mongoose.connect('mongodb+srv://dama:<password>@cluster-dama.qgpqn.mongodb.net/?retryWrites=true&w=majority', 
-)
+mongoose.connect('mongodb+srv://dama:Diamondra_10@cluster-dama.qgpqn.mongodb.net/?retryWrites=true&w=majority', 
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log('Connexion à Mongo réussi'))
+  .catch(() => console.log('Connexion à Mongo échoué'));
 
 
 //pour les headers éviter CORS
@@ -19,33 +25,32 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.post('/api/stuff', (req, res, next) => {
-  console.log(req.body);
-  res.status(201).json({
-    message: 'objer créé'
-  });
+  //on instance le modele et passe en parametre le corps de la requêtes
+  //ceci peut s'ecrire aussi titre : req.body.titre, et ainsi de suite
+  
+  delete req.body._id;
+    const thing = new Thing({
+      ...req.body
+    });
+
+  thing.save()
+      .then(() => res.status(201).json({message:'Objer enregistrer!'}))
+      .catch((error) => res.status(400).json({error}));
 })
 
-//middleware get
+//middleware pour get one object
+app.get('/api/stuff/:id', (req, res, next) => {
+  Thing.findOne({ _id : req.params.id})
+    .then(things => res.status(200).json(things))
+    .catch((error) => res.status(404).json({error}))
+    
+})
+
+//middleware get all object
 app.get('/api/stuff', (req, res, next) => {
-	const stuff = [
-    {
-      _id: 'oeihfzeoi',
-      title: 'Mon premier objet',
-      description: 'Les infos de mon premier objet',
-      imageUrl: 'https://cdn.pixabay.com/photo/2019/06/11/18/56/camera-4267692_1280.jpg',
-      price: 4900,
-      userId: 'qsomihvqios',
-    },
-    {
-      _id: 'oeihfzeomoihi',
-      title: 'Mon deuxième objet',
-      description: 'Les infos de mon deuxième objet',
-      imageUrl: 'https://cdn.pixabay.com/photo/2019/06/11/18/56/camera-4267692_1280.jpg',
-      price: 2900,
-      userId: 'qsomihvqios',
-    },
-  ];
-  res.status(200).json(stuff);
+	 Thing.find()
+   .then((things) => res.status(200).json(things))
+   .catch(error => res.status(400).json({error}))
 })
 
 module.exports=app;
