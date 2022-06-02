@@ -38,7 +38,7 @@ app.post('/api/stuff', (req, res, next) => {
       .catch((error) => res.status(400).json({error}));
 })
 
-//middleware pour get one object
+//middleware pour get one object , ici on utilise la méthode findOne de l'objet Thing
 app.get('/api/stuff/:id', (req, res, next) => {
   Thing.findOne({ _id : req.params.id})
     .then(things => res.status(200).json(things))
