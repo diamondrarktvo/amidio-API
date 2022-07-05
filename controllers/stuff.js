@@ -4,10 +4,15 @@ exports.createThing = (req, res, next) => {
   //on instance le modele et passe en parametre le corps de la requêtes
   //ceci peut s'ecrire aussi titre : req.body.titre, et ainsi de suite
   
-  delete req.body._id;
-    const thing = new Thing({
-      ...req.body
-    });
+  const thingObject = JSON.parse(req.body.thing);
+  delete thingObject._id;
+  delete thingObject.userId;
+
+  const thing = new Thing({
+    ...thingObject,
+    userId: req.auth.userId,
+    imageUrl : `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+  })
 
   thing.save()
       .then(() => res.status(201).json({message:'Objet enregistrer!'}))

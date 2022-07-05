@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const stuffCtrl = require('../controllers/stuff');
 const auth = require('../middleware/auth');
+const multer = require('../middleware/multer_config');
 
 //middleware pour l'ajout
-router.post('/', auth, stuffCtrl.createThing);
+router.post('/', multer, stuffCtrl.createThing);
 
 //middleware pour la mise a jour d'un objet
 router.put('/:id', auth, stuffCtrl.updateThing);

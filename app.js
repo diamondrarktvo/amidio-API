@@ -5,6 +5,7 @@ const app = express();
 const routeStuff = require('./routes/stuff');
 const authRoute = require('./routes/auth');
 
+
 mongoose.connect('mongodb+srv://dama:Diamondra_10@cluster-dama.qgpqn.mongodb.net/?retryWrites=true&w=majority', 
   {
     useNewUrlParser: true,
