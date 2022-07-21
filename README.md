@@ -84,6 +84,7 @@ Installer nodejs
 ## Usage
 
 Les routes : 
+### GET UN SEUL PRODUIT
   ```
 0. GET http://<host>:3000/api/stuff/ (get un seul produit)
    Authorization: Bearer <token>
@@ -98,10 +99,10 @@ Les routes :
       "price": prix du produit
    }
    ```
+   ### GET TOUS LES PRODUITS
   ```
 1. GET http://<host>:3000/api/stuff/ (get tous les produits)
    Authorization: Bearer <token>
-   ```
    ```
    => RETOUR : 
    ```
@@ -113,6 +114,7 @@ Les routes :
       "price": prix du produit
    }
    ```
+   ### INSERT UN PRODUIT
    ```
 2. POST http://<host>:3000/api/stuff/
   content-type: multipart/form-data
@@ -130,6 +132,7 @@ Les routes :
     "message": "Objet enregistrer"
 }
 ```
+### UPDATE UN PRODUIT
    ```
 3. PUT http://<host>:3000/api/stuff/:id
   content-type: multipart/form-data
@@ -148,6 +151,7 @@ Les routes :
     "message": "Objet modifié"
 }
 ```
+### SUPPRIME UN PRODUIT
    ```
 4. DELETE http://<host>:3000/api/stuff/:id
   content-type: multipart/form-data
@@ -164,7 +168,7 @@ Les routes :
 ```
 
 ##LOGIN && SIGN UP
-login
+### login
 ```
 5. POST http://<host>:3000/api/auth/login
   content-type: application/json
@@ -180,7 +184,8 @@ login
     "token": token 
 }
 ```
-Signup
+### Signup
+```
 6. POST http://<host>:3000/api/auth/signup
   content-type: application/json
 {
