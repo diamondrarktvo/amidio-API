@@ -42,7 +42,7 @@ API simple pour une vente d'objet
 Les technologies utilisées : 
 
 * [![Angular][Angular.io]][Angular-url] pour le front
-* [![Nodejs][Nodejs.com]][Nodejs-url]
+* [![Nodejs][Node.com]][Nodejs-url]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -87,7 +87,6 @@ Les routes :
   ```
 0. GET http://<host>:3000/api/stuff/ (get un seul produit)
    Authorization: Bearer <token>
-   ```
    ```
    => RETOUR : 
    ```
