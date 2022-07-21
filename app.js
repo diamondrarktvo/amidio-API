@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const app = express();
 const routeStuff = require('./routes/stuff');
 const authRoute = require('./routes/auth');
-
+const path = require('path');
 
 mongoose.connect('mongodb+srv://dama:Diamondra_10@cluster-dama.qgpqn.mongodb.net/?retryWrites=true&w=majority', 
   {
@@ -28,6 +28,7 @@ app.use((req, res, next) => {
 //content-type: application/json
 app.use(bodyParser.json());
 
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/stuff', routeStuff);
 app.use('/api/auth', authRoute);
 
