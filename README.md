@@ -1,10 +1,5 @@
 <div id="top"></div>
 
-<!-- START -->
-[![Contributors][contributors-shield]][contributors-url]
-[![MIT License][license-shield]][license-url]
-
-<br />
 <div align="center">
   <h3 align="center">Simple API</h3>
 </div>
@@ -42,7 +37,8 @@ API simple pour une vente d'objet
 Les technologies utilisées : 
 
 * [![Angular][Angular.io]][Angular-url] pour le front
-* [![Nodejs][Node.com]][Nodejs-url]
+* [![Expressjs][Epxressjs.com]][Expressjs-url] pour le back
+* [![MongoDB][MongoDB.org]][Mongodb-url]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
