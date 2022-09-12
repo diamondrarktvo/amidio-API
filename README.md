@@ -1,7 +1,7 @@
 <div id="top"></div>
 
 <div align="center">
-  <h3 align="center">Simple API</h3>
+  <h3 align="center">Amidio API</h3>
 </div>
 
 <details>
