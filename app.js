@@ -8,7 +8,7 @@ const path = require("path");
 
 mongoose
     .connect(
-        "mongodb+srv://dama:Diamondra_10@cluster-dama.qgpqn.mongodb.net/?retryWrites=true&w=majority",
+        `mongodb+srv://dama:${process.env.DB_DATABASE}@cluster-dama.qgpqn.mongodb.net/${process.env.DB_DATABASE}`,
         {
             useNewUrlParser: true,
             useUnifiedTopology: true,
